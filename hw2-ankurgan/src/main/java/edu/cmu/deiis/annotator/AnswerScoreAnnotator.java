@@ -55,7 +55,7 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 			annotation.addToIndexes();
 			aNGrams.clear();
 		}
-
+		
 	}
 	
 	private NGram GetNGrams(ArrayList<String> nGrams , NGram nG1, int end,Iterator nGramIter){
