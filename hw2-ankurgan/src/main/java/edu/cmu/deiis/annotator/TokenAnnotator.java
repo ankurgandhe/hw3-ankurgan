@@ -1,4 +1,4 @@
-package edu.cmu.deiis.types;
+package edu.cmu.deiis.annotator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

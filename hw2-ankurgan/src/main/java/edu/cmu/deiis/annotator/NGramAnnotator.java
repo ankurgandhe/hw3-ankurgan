@@ -1,6 +1,8 @@
-package edu.cmu.deiis.types;
+package edu.cmu.deiis.annotator;
 
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.cas.FSIndex;
@@ -13,21 +15,28 @@ import edu.cmu.deiis.types.NGram;
  * ngram annotator that detects tokens using Java regular expressions.
  */
 public class NGramAnnotator extends JCasAnnotator_ImplBase {
-
+	private Pattern sentencePattern = Pattern.compile(".*[\\n$]");
 	public void process(JCas aJCas) {
 		// search for tokens
 		FSIndex tokenIndex = aJCas.getAnnotationIndex(Token.type);
 		Iterator tokenIter = tokenIndex.iterator();
 
-		FSIndex answerIndex = aJCas.getAnnotationIndex(Answer.type);
-		Iterator answerIter = answerIndex.iterator();
+		//FSIndex answerIndex = aJCas.getAnnotationIndex(Answer.type);
+		//Iterator answerIter = answerIndex.iterator();
 
-		FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
-		Iterator questionIter = questionIndex.iterator();
+		//FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
+		//Iterator questionIter = questionIndex.iterator();
 		
 		if ( !tokenIter.hasNext())
 			return;
-		
+		String docText = aJCas.getDocumentText();
+		// search for tokens
+		Matcher matcher = sentencePattern.matcher(docText);
+		Token t1 = (Token) tokenIter.next();
+		while (matcher.find()) {
+			t1 = MarkNgrams(aJCas,t1,tokenIter, matcher.end());
+		}
+		/*
 		Token t1 = (Token) tokenIter.next();
 		Question q = (Question)questionIter.next();
 		//Mark n-grams in the question
@@ -37,7 +46,7 @@ public class NGramAnnotator extends JCasAnnotator_ImplBase {
 		while (answerIter.hasNext()) {
 			ans = (Answer)answerIter.next();
 			t1 = MarkNgrams(aJCas,t1,tokenIter, ans.getEnd());
-		}
+		}*/
 		
 	}
 
@@ -78,7 +87,6 @@ public class NGramAnnotator extends JCasAnnotator_ImplBase {
 			t1 = t2;
 			counter++;
 		}
-		System.out.println(counter);
 		return t1;
 	}
 }

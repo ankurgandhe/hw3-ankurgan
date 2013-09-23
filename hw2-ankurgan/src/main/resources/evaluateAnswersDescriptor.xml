@@ -3,17 +3,20 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
-    <delegateAnalysisEngine key="AnswerAnnotationDescriptor">
-      <import location="AnswerAnnotationDescriptor.xml"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="QuestionAnnotationDescriptor">
-      <import location="QuestionAnnotationDescriptor.xml"/>
-    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="TokenAnnotationDescriptor">
-      <import location="TokenAnnotationDescriptor.xml"/>
+      <import name="descriptors.TokenAnnotationDescriptor"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="NGramAnnotationDescriptor">
-      <import location="NGramAnnotationDescriptor.xml"/>
+      <import name="descriptors.NGramAnnotationDescriptor"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AnswerAnnotationDescriptor">
+      <import name="descriptors.AnswerAnnotationDescriptor"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="QuestionAnnotationDescriptor">
+      <import name="descriptors.QuestionAnnotationDescriptor"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AnswerScoreDescriptor">
+      <import name="descriptors.AnswerScoreDescriptor"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -25,10 +28,11 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>AnswerAnnotationDescriptor</node>
-        <node>QuestionAnnotationDescriptor</node>
         <node>TokenAnnotationDescriptor</node>
         <node>NGramAnnotationDescriptor</node>
+        <node>AnswerAnnotationDescriptor</node>
+        <node>QuestionAnnotationDescriptor</node>
+        <node>AnswerScoreDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>
@@ -40,6 +44,7 @@
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Question</type>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Token</type>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.NGram</type>
+          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.AnswerScore</type>
         </outputs>
         <languagesSupported/>
       </capability>

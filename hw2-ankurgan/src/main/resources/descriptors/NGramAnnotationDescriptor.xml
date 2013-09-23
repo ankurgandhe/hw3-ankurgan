@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.deiis.types.NGramAnnotator</annotatorImplementationName>
+  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.deiis.annotator.NGramAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>TokenAnnotationDescriptor</name>
     <description>This annotator takes a text and marks the ngrams present in the text, using the token annotations</description>
@@ -20,8 +20,6 @@
       <capability>
         <inputs>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Token</type>
-          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Question</type>
-          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Answer</type>
         </inputs>
         <outputs>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.NGram</type>
