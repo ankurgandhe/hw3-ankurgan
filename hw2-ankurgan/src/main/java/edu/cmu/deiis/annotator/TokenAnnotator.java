@@ -9,13 +9,14 @@ import org.apache.uima.jcas.JCas;
 import edu.cmu.deiis.types.Token;
 
 /**
- * Example annotator that detects tokens using Java regular expressions.
- */
+ * Token Annotator that detects tokens using Java regular expressions.
+ **/
+
 public class TokenAnnotator extends JCasAnnotator_ImplBase {
-	private Pattern tokenPattern = Pattern.compile("(?m)(?<!\\n|\n|^)\\b[a-zA-Z_]([a-zA-Z0-9_^])*\\b"); //[ ,?.].[^ ]*");
+	private Pattern tokenPattern = Pattern
+			.compile("(?m)(?<!\\n|\n|^)\\b[a-zA-Z_]([a-zA-Z0-9_^])*\\b");
 
 	public void process(JCas aJCas) {
-		// Discussed Later
 		// get document text
 		String docText = aJCas.getDocumentText();
 		// search for tokens

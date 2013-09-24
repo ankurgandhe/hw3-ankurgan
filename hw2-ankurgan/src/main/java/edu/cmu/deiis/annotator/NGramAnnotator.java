@@ -12,80 +12,68 @@ import edu.cmu.deiis.types.Token;
 import edu.cmu.deiis.types.NGram;
 
 /**
- * ngram annotator that detects tokens using Java regular expressions.
- */
+ * ngram annotator that detects 1-gram, 2-gram and 3-gram using Java regular
+ * expressions.
+ **/
 public class NGramAnnotator extends JCasAnnotator_ImplBase {
 	private Pattern sentencePattern = Pattern.compile(".*[\\n$]");
+
 	public void process(JCas aJCas) {
-		// search for tokens
+		// Iterate over token
 		FSIndex tokenIndex = aJCas.getAnnotationIndex(Token.type);
 		Iterator tokenIter = tokenIndex.iterator();
 
-		//FSIndex answerIndex = aJCas.getAnnotationIndex(Answer.type);
-		//Iterator answerIter = answerIndex.iterator();
-
-		//FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
-		//Iterator questionIter = questionIndex.iterator();
-		
-		if ( !tokenIter.hasNext())
+		if (!tokenIter.hasNext())
 			return;
 		String docText = aJCas.getDocumentText();
-		// search for tokens
+		// search for tokens within a single sentence
 		Matcher matcher = sentencePattern.matcher(docText);
 		Token t1 = (Token) tokenIter.next();
+		// Find all ngrams in this sentence
 		while (matcher.find()) {
-			t1 = MarkNgrams(aJCas,t1,tokenIter, matcher.end());
+			t1 = MarkNgrams(aJCas, t1, tokenIter, matcher.end());
 		}
-		/*
-		Token t1 = (Token) tokenIter.next();
-		Question q = (Question)questionIter.next();
-		//Mark n-grams in the question
-		t1 = MarkNgrams(aJCas,t1,tokenIter, q.getEnd());
-		// Mark n-grams in the answers
-		Answer ans;
-		while (answerIter.hasNext()) {
-			ans = (Answer)answerIter.next();
-			t1 = MarkNgrams(aJCas,t1,tokenIter, ans.getEnd());
-		}*/
-		
 	}
 
-	public Token MarkNgrams(JCas aJCas,Token t1, Iterator tokenIter, int end) {
-		Token tm1=null,t2;
-		int counter=0;
-		//Uni-gram
+	/*
+	 * Function to iterate over tokens and add 1-gram, 2-gram and 3-gram
+	 * annotations
+	 */
+	public Token MarkNgrams(JCas aJCas, Token t1, Iterator tokenIter, int end) {
+		Token tm1 = null, t2;
+
+		// Uni-gram
 		NGram annotation = new NGram(aJCas);
 		annotation.setBegin(t1.getBegin());
 		annotation.setEnd(t1.getEnd());
 		annotation.addToIndexes();
-		
-		
+
 		while (tokenIter.hasNext()) {
 			t2 = (Token) tokenIter.next();
-			if (t2.getBegin() > end){
-				t1=t2;
+			if (t2.getBegin() > end) {
+				t1 = t2;
 				break;
 			}
-			//Tri-gram
-			if (tm1!=null){
+			// Tri-gram
+			if (tm1 != null) {
 				annotation = new NGram(aJCas);
 				annotation.setBegin(tm1.getBegin());
 				annotation.setEnd(t2.getEnd());
 				annotation.addToIndexes();
 			}
-			//Bi-gram
+			// Bi-gram
 			annotation = new NGram(aJCas);
 			annotation.setBegin(t1.getBegin());
 			annotation.setEnd(t2.getEnd());
 			annotation.addToIndexes();
-			//Uni-gram
+			// Uni-gram
 			annotation = new NGram(aJCas);
 			annotation.setBegin(t2.getBegin());
 			annotation.setEnd(t2.getEnd());
 			annotation.addToIndexes();
 			tm1 = t1;
 			t1 = t2;
-			counter++;
+
 		}
 		return t1;
 	}

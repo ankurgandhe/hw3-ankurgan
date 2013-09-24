@@ -16,15 +16,11 @@ import edu.cmu.deiis.types.NGram;
 import edu.cmu.deiis.types.Question;
 
 /**
- * Example annotator that detects meetings from the co-occurrence of a
- * RoomNumber, a Date, and two Times (start and end), within a specified
- * "window" size.
+ * This Annotator takes the Ngrams, Questions and Answers and matches N-grams to
+ * score the answers
  */
 public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 
-	/**
-	 * @see JCasAnnotator_ImplBase#process(JCas)
-	 */
 	public void process(JCas aJCas) {
 		// get annotation indexes
 		FSIndex answerIndex = aJCas.getAnnotationIndex(Answer.type);
@@ -33,19 +29,20 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 		Iterator questionIter = questionIndex.iterator();
 		FSIndex ngramIndex = aJCas.getAnnotationIndex(NGram.type);
 		Iterator ngramIter = ngramIndex.iterator();
-		NGram nG1=null; 
-		
+		NGram nG1 = null;
+
+		// Get n-grams in question. nG1 stores the next n-gram
 		Question ques = (Question) questionIter.next();
 		ArrayList<String> qNGrams = new ArrayList<String>();
-		// Get ngrams in question. nG1 stores the next n-gram
-		nG1 = GetNGrams(qNGrams,nG1,ques.getEnd(),ngramIter);
-		
+		nG1 = GetNGrams(qNGrams, nG1, ques.getEnd(), ngramIter);
+
+		// ITerate over answers and get score
 		Answer answer;
 		double score;
 		ArrayList<String> aNGrams = new ArrayList<String>();
 		while (answerIter.hasNext()) {
 			answer = (Answer) answerIter.next();
-			nG1 = GetNGrams(aNGrams,nG1,answer.getEnd(),ngramIter);
+			nG1 = GetNGrams(aNGrams, nG1, answer.getEnd(), ngramIter);
 			score = ScoreAnswer(qNGrams, aNGrams);
 			AnswerScore annotation = new AnswerScore(aJCas);
 			annotation.setBegin(answer.getBegin());
@@ -55,33 +52,41 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 			annotation.addToIndexes();
 			aNGrams.clear();
 		}
-		
+
 	}
-	
-	private NGram GetNGrams(ArrayList<String> nGrams , NGram nG1, int end,Iterator nGramIter){
-		if (nG1!=null)
+
+	/*
+	 * Function to return the string list of ngrams present in the iterator
+	 * untill end pointer is reached
+	 */
+	private NGram GetNGrams(ArrayList<String> nGrams, NGram nG1, int end,
+			Iterator nGramIter) {
+		if (nG1 != null)
 			if (nG1.getBegin() < end)
 				nGrams.add(nG1.getCoveredText());
 		while (nGramIter.hasNext()) {
 			nG1 = (NGram) nGramIter.next();
-			if (nG1.getBegin() > end){
+			if (nG1.getBegin() > end) {
 				break;
 			}
 			nGrams.add(nG1.getCoveredText());
 		}
 		return nG1;
 	}
-	
-	private double ScoreAnswer(ArrayList<String> qNGrams,ArrayList<String> aNGrams) {
+
+	/* Function to match Question Ngrams with Answer Ngrams
+	 */
+	private double ScoreAnswer(ArrayList<String> qNGrams,
+			ArrayList<String> aNGrams) {
 		double score = 0.0;
 		double number_of_matches = 0;
-		for (String text : aNGrams){
+		for (String text : aNGrams) {
 			if (qNGrams.contains(text))
 				number_of_matches++;
-				
+
 		}
-		score = number_of_matches/qNGrams.size(); //number_of_matches/
-		score = Math.round(score*100)/100.0d;
+		score = number_of_matches / qNGrams.size(); // number_of_matches/
+		score = Math.round(score * 100) / 100.0d;
 		return score;
 	}
 }

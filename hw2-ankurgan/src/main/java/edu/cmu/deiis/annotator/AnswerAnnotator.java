@@ -8,9 +8,14 @@ import org.apache.uima.jcas.JCas;
 
 import edu.cmu.deiis.types.Answer;
 
+/**
+ * This Annotator Annotates the answers present in the document and assigned
+ * isCorrent its value
+ */
 public class AnswerAnnotator extends JCasAnnotator_ImplBase {
-	private Pattern correctAnswerPattern = Pattern.compile("(?m)\nA 1 .*$"); //[ ,?.].[^ ]*");
-	private Pattern wrongAnswerPattern = Pattern.compile("(?m)\nA 0 .*$"); 
+	private Pattern correctAnswerPattern = Pattern.compile("(?m)\nA 1 .*$"); 
+	private Pattern wrongAnswerPattern = Pattern.compile("(?m)\nA 0 .*$");
+
 	public void process(JCas aJCas) {
 		// Discussed Later
 		// get document text
@@ -20,7 +25,7 @@ public class AnswerAnnotator extends JCasAnnotator_ImplBase {
 		while (matcher.find()) {
 			// found one - create annotation
 			Answer annotation = new Answer(aJCas);
-			annotation.setBegin(matcher.start());
+			annotation.setBegin(matcher.start()+5);
 			annotation.setEnd(matcher.end());
 			annotation.setIsCorrect(true);
 			annotation.addToIndexes();
@@ -29,7 +34,7 @@ public class AnswerAnnotator extends JCasAnnotator_ImplBase {
 		while (matcher.find()) {
 			// found one - create annotation
 			Answer annotation = new Answer(aJCas);
-			annotation.setBegin(matcher.start());
+			annotation.setBegin(matcher.start()+5);
 			annotation.setEnd(matcher.end());
 			annotation.setIsCorrect(false);
 			annotation.addToIndexes();
