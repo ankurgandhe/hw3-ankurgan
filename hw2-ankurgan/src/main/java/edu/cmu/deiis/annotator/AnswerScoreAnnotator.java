@@ -46,7 +46,7 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 		while (answerIter.hasNext()) {
 			answer = (Answer) answerIter.next();
 			nG1 = GetNGrams(aNGrams,nG1,answer.getEnd(),ngramIter);
-			score = ScoreAnswer(aNGrams, qNGrams);
+			score = ScoreAnswer(qNGrams, aNGrams);
 			AnswerScore annotation = new AnswerScore(aJCas);
 			annotation.setBegin(answer.getBegin());
 			annotation.setEnd(answer.getEnd());
@@ -74,13 +74,14 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 	
 	private double ScoreAnswer(ArrayList<String> qNGrams,ArrayList<String> aNGrams) {
 		double score = 0.0;
-		int number_of_matches = 0;
+		double number_of_matches = 0;
 		for (String text : aNGrams){
 			if (qNGrams.contains(text))
 				number_of_matches++;
 				
 		}
-		score = number_of_matches; ///aNGrams.size(); //
+		score = number_of_matches/qNGrams.size(); //number_of_matches/
+		score = Math.round(score*100)/100.0d;
 		return score;
 	}
 }

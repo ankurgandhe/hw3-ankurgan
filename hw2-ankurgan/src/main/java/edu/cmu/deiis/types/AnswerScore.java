@@ -3,6 +3,8 @@
 /* First created by JCasGen Wed Sep 11 13:44:28 EDT 2013 */
 package edu.cmu.deiis.types;
 
+import java.util.Comparator;
+
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
