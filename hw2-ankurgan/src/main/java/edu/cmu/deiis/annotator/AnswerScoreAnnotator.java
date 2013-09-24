@@ -21,6 +21,8 @@ import edu.cmu.deiis.types.Question;
  */
 public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 
+	
+	
 	public void process(JCas aJCas) {
 		// get annotation indexes
 		FSIndex answerIndex = aJCas.getAnnotationIndex(Answer.type);

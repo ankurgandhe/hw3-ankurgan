@@ -79,5 +79,17 @@
         </featureDescription>
       </features>
     </typeDescription>
+  <typeDescription>
+      <name>edu.cmu.deiis.types.Evaluation</name>
+      <description>Stores the result of metric of evaluation for each document</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>precision</name>
+          <description>Stores the precision@N for the given document, where N is number of correct answers</description>
+          <rangeTypeName>uima.cas.Float</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
   </types>
 </typeSystemDescription>

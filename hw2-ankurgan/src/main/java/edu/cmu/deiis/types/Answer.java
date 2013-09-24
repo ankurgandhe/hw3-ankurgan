@@ -13,7 +13,7 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** 
- * Updated by JCasGen Mon Sep 23 17:32:53 EDT 2013
+ * Updated by JCasGen Mon Sep 23 22:39:49 EDT 2013
  * XML source: C:/Users/gandhe/git/hw2-ankurgan/hw2-ankurgan/src/main/resources/descriptors/deiis_types.xml
  * @generated */
 public class Answer extends Annotation {
@@ -80,42 +80,6 @@ public class Answer extends Annotation {
     if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_isCorrect == null)
       jcasType.jcas.throwFeatMissing("isCorrect", "edu.cmu.deiis.types.Answer");
     jcasType.ll_cas.ll_setBooleanValue(addr, ((Answer_Type)jcasType).casFeatCode_isCorrect, v);}    
-   
-    
-  //*--------------*
-  //* Feature: tokenList
-
-  /** getter for tokenList - gets Stores the tokens covering in the Answer annotation
-   * @generated */
-  public FSList getTokenList() {
-    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_tokenList == null)
-      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.deiis.types.Answer");
-    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_tokenList)));}
-    
-  /** setter for tokenList - sets Stores the tokens covering in the Answer annotation 
-   * @generated */
-  public void setTokenList(FSList v) {
-    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_tokenList == null)
-      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.deiis.types.Answer");
-    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_tokenList, jcasType.ll_cas.ll_getFSRef(v));}    
-   
-    
-  //*--------------*
-  //* Feature: ngramList
-
-  /** getter for ngramList - gets Stores the n-grams covering in the answer annotation
-   * @generated */
-  public FSList getNgramList() {
-    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_ngramList == null)
-      jcasType.jcas.throwFeatMissing("ngramList", "edu.cmu.deiis.types.Answer");
-    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_ngramList)));}
-    
-  /** setter for ngramList - sets Stores the n-grams covering in the answer annotation 
-   * @generated */
-  public void setNgramList(FSList v) {
-    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_ngramList == null)
-      jcasType.jcas.throwFeatMissing("ngramList", "edu.cmu.deiis.types.Answer");
-    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_ngramList, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

@@ -5,16 +5,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.cas.FSIndex;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.resource.ResourceInitializationException;
 
-import edu.cmu.deiis.types.Answer;
 import edu.cmu.deiis.types.AnswerScore;
 import edu.cmu.deiis.types.Question;
+import edu.cmu.deiis.types.Evaluation;
 
 /**
  * Annotator to take question and all scored answers, and produce ranked list of
@@ -23,9 +23,24 @@ import edu.cmu.deiis.types.Question;
  */
 
 public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
+
+	private double totalPrecision;
+	private double numberOfDoc;
+
+	public void initialize(UimaContext aContext)
+			throws ResourceInitializationException {
+		super.initialize(aContext);
+		totalPrecision = 0;
+		numberOfDoc = 0;
+	}
+
+	public void destroy() {
+		System.out.println("Average Precision:" + totalPrecision / numberOfDoc);
+	}
+
 	public void process(JCas aJCas) {
 		// get document text
-		
+
 		// search for question
 		FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
 		Iterator questionIter = questionIndex.iterator();
@@ -37,32 +52,46 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 		Iterator answerScoreIter = answerScoreIndex.iterator();
 		AnswerScore answerScore = null;
 		List<AnswerScore> AnswerList = new ArrayList<AnswerScore>();
-		
+
 		// Store number of correct answers
 		int N = 0;
+		// Get all answers in a list
 		while (answerScoreIter.hasNext()) {
 			answerScore = (AnswerScore) answerScoreIter.next();
 			AnswerList.add(answerScore);
 			if (answerScore.getAnswer().getIsCorrect())
 				N = N + 1;
 		}
-		// Sort AnswerList in reverse order 
+		// Sort AnswerList in reverse order
 		Collections.sort(AnswerList, new ScoreComparator());
 
 		// store number of correct answers in topN
 		int i = 0;
 		float nCorrect = 0;
 		for (AnswerScore a : AnswerList) {
-			System.out.println(a.getScore() + " "
-					+ a.getAnswer().getCoveredText().trim());
+			if (a.getAnswer().getIsCorrect())
+				System.out.println("+ " + a.getScore() + " "
+						+ a.getAnswer().getCoveredText().trim());
+			else
+				System.out.println("- " + a.getScore() + " "
+						+ a.getAnswer().getCoveredText().trim());
 			if (i++ < N && a.getAnswer().getIsCorrect())
 				nCorrect += 1;
 
 		}
-		System.out.println("Precision at " + N + ":" + nCorrect / N + "\n");
+		float precision = nCorrect / N;
+		System.out.println("Precision at " + N + ":" + precision + "\n");
+		totalPrecision += precision;
+		numberOfDoc++;
+		// Store result in Evaluation annotation
+		Evaluation evaluate = new Evaluation(aJCas);
+		evaluate.setPrecision(precision);
 	}
 }
 
+/*
+ * Class that implements comparator for AnswerScore.
+ */
 class ScoreComparator implements Comparator<AnswerScore> {
 	public int compare(AnswerScore o1, AnswerScore o2) {
 		if (o1.getScore() < o2.getScore())
