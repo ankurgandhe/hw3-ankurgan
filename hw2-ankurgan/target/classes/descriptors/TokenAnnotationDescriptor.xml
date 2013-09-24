@@ -4,7 +4,7 @@
   <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.deiis.annotator.TokenAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>TokenAnnotationDescriptor</name>
-    <description>This annotator takes a text and marks the tokens present in the text</description>
+    <description>This annotator takes a text and marks the tokens present in the text using a java regex</description>
     <version>1.0</version>
     <vendor>Ankur Gandhe</vendor>
     <configurationParameters/>

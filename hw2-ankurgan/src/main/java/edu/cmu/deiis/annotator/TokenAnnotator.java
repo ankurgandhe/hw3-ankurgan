@@ -27,6 +27,8 @@ public class TokenAnnotator extends JCasAnnotator_ImplBase {
 			Token annotation = new Token(aJCas);
 			annotation.setBegin(matcher.start());
 			annotation.setEnd(matcher.end());
+			annotation.setCasProcessorId("JavaRegex");
+			annotation.setConfidence(0.8);
 			annotation.addToIndexes();
 		}
 

@@ -4,9 +4,9 @@
   <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.deiis.annotator.AnswerScoreAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>AnswerScoreDescriptor</name>
-    <description/>
+    <description>This annotator takes input the question, answer and ngram annotations produced by the previous analysis engines and scores the answers, storing the result in the AnswerScore annotations.</description>
     <version>1.0</version>
-    <vendor/>
+    <vendor>Ankur Gandhe</vendor>
     <configurationParameters/>
     <configurationParameterSettings/>
     <typeSystemDescription>

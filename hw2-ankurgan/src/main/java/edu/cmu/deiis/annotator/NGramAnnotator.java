@@ -46,6 +46,8 @@ public class NGramAnnotator extends JCasAnnotator_ImplBase {
 		NGram annotation = new NGram(aJCas);
 		annotation.setBegin(t1.getBegin());
 		annotation.setEnd(t1.getEnd());
+		annotation.setElementType("1gram");
+		annotation.setConfidence(1);
 		annotation.addToIndexes();
 
 		while (tokenIter.hasNext()) {
@@ -59,17 +61,23 @@ public class NGramAnnotator extends JCasAnnotator_ImplBase {
 				annotation = new NGram(aJCas);
 				annotation.setBegin(tm1.getBegin());
 				annotation.setEnd(t2.getEnd());
+				annotation.setElementType("3gram");
+				annotation.setConfidence(1);
 				annotation.addToIndexes();
 			}
 			// Bi-gram
 			annotation = new NGram(aJCas);
 			annotation.setBegin(t1.getBegin());
 			annotation.setEnd(t2.getEnd());
+			annotation.setElementType("2gram");
+			annotation.setConfidence(1);
 			annotation.addToIndexes();
 			// Uni-gram
 			annotation = new NGram(aJCas);
 			annotation.setBegin(t2.getBegin());
 			annotation.setEnd(t2.getEnd());
+			annotation.setElementType("1gram");
+			annotation.setConfidence(1);
 			annotation.addToIndexes();
 			tm1 = t1;
 			t1 = t2;

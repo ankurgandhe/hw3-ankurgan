@@ -51,6 +51,8 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 			annotation.setEnd(answer.getEnd());
 			annotation.setScore(score);
 			annotation.setAnswer(answer);
+			annotation.setCasProcessorId("NGramMatch");
+			annotation.setConfidence(0.8);
 			annotation.addToIndexes();
 			aNGrams.clear();
 		}
@@ -81,13 +83,18 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 	private double ScoreAnswer(ArrayList<String> qNGrams,
 			ArrayList<String> aNGrams) {
 		double score = 0.0;
+		ArrayList<String> nGramsCovered = new ArrayList<String>();
 		double number_of_matches = 0;
 		for (String text : aNGrams) {
-			if (qNGrams.contains(text))
+			if (qNGrams.contains(text) && !nGramsCovered.contains(text)){
 				number_of_matches++;
+				nGramsCovered.add(text);
+			}
 
 		}
 		score = number_of_matches / qNGrams.size(); // number_of_matches/
+		if (score > 1)
+			score = 1;
 		score = Math.round(score * 100) / 100.0d;
 		return score;
 	}

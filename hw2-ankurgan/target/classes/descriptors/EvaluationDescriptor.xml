@@ -4,7 +4,7 @@
   <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.deiis.annotator.EvaluationAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>AnswerAnnotationDescriptor</name>
-    <description>This annotator takes the asnwers present in the document and creates answer annotations, along with assigning the IsCorrect values to answer type.</description>
+    <description>This annotator takes the asnwers present in the AnswerScore and ranks them according to the score. In addition, it output the ranked list, the precision@N value and the average precision for all the documents processed</description>
     <version>1.0</version>
     <vendor>Ankur Gandhe</vendor>
     <configurationParameters/>

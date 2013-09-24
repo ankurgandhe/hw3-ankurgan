@@ -28,6 +28,8 @@ public class AnswerAnnotator extends JCasAnnotator_ImplBase {
 			annotation.setBegin(matcher.start()+5);
 			annotation.setEnd(matcher.end());
 			annotation.setIsCorrect(true);
+			annotation.setCasProcessorId("JavaRegex");
+			annotation.setConfidence(1);
 			annotation.addToIndexes();
 		}
 		matcher = wrongAnswerPattern.matcher(docText);

@@ -26,6 +26,8 @@ public class QuestionAnnotator extends JCasAnnotator_ImplBase {
 			Question annotation = new Question(aJCas);
 			annotation.setBegin(matcher.start()+2);
 			annotation.setEnd(matcher.end());
+			annotation.setCasProcessorId("JavaRegex");
+			annotation.setConfidence(1);
 			annotation.addToIndexes();
 
 		}
