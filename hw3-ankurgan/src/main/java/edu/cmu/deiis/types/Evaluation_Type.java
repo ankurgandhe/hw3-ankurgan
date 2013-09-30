@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** Stores the result of metric of evaluation for each document
- * Updated by JCasGen Sat Sep 28 14:42:59 EDT 2013
+ * Updated by JCasGen Mon Sep 30 15:25:36 EDT 2013
  * @generated */
 public class Evaluation_Type extends Annotation_Type {
   /** @generated */
@@ -61,6 +61,24 @@ public class Evaluation_Type extends Annotation_Type {
     ll_cas.ll_setFloatValue(addr, casFeatCode_precision, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_n;
+  /** @generated */
+  final int     casFeatCode_n;
+  /** @generated */ 
+  public int getN(int addr) {
+        if (featOkTst && casFeat_n == null)
+      jcas.throwFeatMissing("n", "edu.cmu.deiis.types.Evaluation");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_n);
+  }
+  /** @generated */    
+  public void setN(int addr, int v) {
+        if (featOkTst && casFeat_n == null)
+      jcas.throwFeatMissing("n", "edu.cmu.deiis.types.Evaluation");
+    ll_cas.ll_setIntValue(addr, casFeatCode_n, v);}
+    
+  
 
 
 
@@ -73,6 +91,10 @@ public class Evaluation_Type extends Annotation_Type {
  
     casFeat_precision = jcas.getRequiredFeatureDE(casType, "precision", "uima.cas.Float", featOkTst);
     casFeatCode_precision  = (null == casFeat_precision) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_precision).getCode();
+
+ 
+    casFeat_n = jcas.getRequiredFeatureDE(casType, "n", "uima.cas.Integer", featOkTst);
+    casFeatCode_n  = (null == casFeat_n) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_n).getCode();
 
   }
 }

@@ -20,10 +20,10 @@
       <capability>
         <inputs>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Question</type>
+        <type allAnnotatorFeatures="true">edu.cmu.deiis.types.AnswerScore</type>
         </inputs>
         <outputs>
-          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Answer</type>
-        <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Evaluation</type>
+          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Evaluation</type>
         </outputs>
         <languagesSupported/>
       </capability>

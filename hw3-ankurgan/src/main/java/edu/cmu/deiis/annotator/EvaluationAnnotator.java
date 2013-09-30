@@ -80,12 +80,17 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 
 		}
 		float precision = nCorrect / N;
-		System.out.println("Precision at " + N + ":" + precision + "\n");
+		//System.out.println("Precision at " + N + ":" + precision + "\n");
 		totalPrecision += precision;
 		numberOfDoc++;
 		// Store result in Evaluation annotation
 		Evaluation evaluate = new Evaluation(aJCas);
 		evaluate.setPrecision(precision);
+		evaluate.setN(N);
+		evaluate.setBegin(question.getBegin());
+		evaluate.setEnd(answerScore.getEnd());
+		evaluate.addToIndexes();
+		
 	}
 }
 

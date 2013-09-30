@@ -4,7 +4,7 @@
   <implementationName>edu.cmu.deiis.cpe.CasConsumer</implementationName>
   <processingResourceMetaData>
     <name>casConsumerDescriptor</name>
-    <description>This cas comsumer does nothing</description>
+    <description>This cas comsumer takes the Envaluation output of the CAS and prints the precision on stdout.</description>
     <version>1.0</version>
     <vendor/>
     <configurationParameters/>
@@ -18,7 +18,9 @@
     <fsIndexCollection/>
     <capabilities>
       <capability>
-        <inputs/>
+        <inputs>
+          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Evaluation</type>
+        </inputs>
         <outputs/>
         <languagesSupported/>
       </capability>

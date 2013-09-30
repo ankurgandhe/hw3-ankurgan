@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** Stores the result of metric of evaluation for each document
- * Updated by JCasGen Sat Sep 28 14:42:59 EDT 2013
+ * Updated by JCasGen Mon Sep 30 15:25:36 EDT 2013
  * XML source: C:/Users/gandhe/git/hw3-ankurgan/hw3-ankurgan/src/main/resources/descriptors/deiis_types.xml
  * @generated */
 public class Evaluation extends Annotation {
@@ -78,6 +78,24 @@ public class Evaluation extends Annotation {
     if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_precision == null)
       jcasType.jcas.throwFeatMissing("precision", "edu.cmu.deiis.types.Evaluation");
     jcasType.ll_cas.ll_setFloatValue(addr, ((Evaluation_Type)jcasType).casFeatCode_precision, v);}    
+   
+    
+  //*--------------*
+  //* Feature: n
+
+  /** getter for n - gets Stores the number of correct answers in the system
+   * @generated */
+  public int getN() {
+    if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_n == null)
+      jcasType.jcas.throwFeatMissing("n", "edu.cmu.deiis.types.Evaluation");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((Evaluation_Type)jcasType).casFeatCode_n);}
+    
+  /** setter for n - sets Stores the number of correct answers in the system 
+   * @generated */
+  public void setN(int v) {
+    if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_n == null)
+      jcasType.jcas.throwFeatMissing("n", "edu.cmu.deiis.types.Evaluation");
+    jcasType.ll_cas.ll_setIntValue(addr, ((Evaluation_Type)jcasType).casFeatCode_n, v);}    
   }
 
     
