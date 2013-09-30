@@ -17,25 +17,21 @@
       </configurationParameter>
       <configurationParameter>
         <name>Encoding</name>
-        <description>It contains the character encoding used by the input files. If not specified, default is used. </description>
+        <description>It contains the character encoding used by the input files. If not specified, default is used.</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
       <configurationParameter>
         <name>Language</name>
-        <description>This parameter specified the langauge of the input files. </description>
+        <description>This parameter specified the langauge of the input files.</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings/>
-    <typeSystemDescription>
-      <imports>
-        <import name="descriptors.deiis_types"/>
-      </imports>
-    </typeSystemDescription>
+    <typeSystemDescription/>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>

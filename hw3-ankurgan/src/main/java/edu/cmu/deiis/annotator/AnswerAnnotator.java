@@ -15,7 +15,6 @@ import edu.cmu.deiis.types.Answer;
 public class AnswerAnnotator extends JCasAnnotator_ImplBase {
 	private Pattern correctAnswerPattern = Pattern.compile("(?m)\nA 1 .*$"); 
 	private Pattern wrongAnswerPattern = Pattern.compile("(?m)\nA 0 .*$");
-
 	public void process(JCas aJCas) {
 		// Discussed Later
 		// get document text
