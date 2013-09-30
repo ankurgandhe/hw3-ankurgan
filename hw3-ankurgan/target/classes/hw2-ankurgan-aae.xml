@@ -23,7 +23,7 @@
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
-    <name>evaluateAnswersDescriptor</name>
+    <name>hw2-ankurgan-aae</name>
     <description>This is an aggregator. It runs token Annotation, ngram annotation, question and answer annotation and finally answer scoring annotation.</description>
     <version>1.0</version>
     <vendor>Ankur Gandhe</vendor>

@@ -4,7 +4,7 @@
   <implementationName>org.apache.uima.tools.components.FileSystemCollectionReader</implementationName>
   <processingResourceMetaData>
     <name>collectionReaderDescriptor</name>
-    <description/>
+    <description>This is a collection Reader that reads files from the disk.</description>
     <version>1.0</version>
     <vendor/>
     <configurationParameters>
@@ -31,7 +31,11 @@
       </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings/>
-    <typeSystemDescription/>
+    <typeSystemDescription>
+      <imports>
+        <import name="org.apache.uima.examples.SourceDocumentInformation"/>
+      </imports>
+    </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>

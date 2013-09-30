@@ -3,7 +3,7 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.deiis.annotator.QuestionAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>AnswerAnnotationDescriptor</name>
+    <name>QuestionAnnotationDescriptor</name>
     <description>This annotator takes the question present in the document and creates question annotation.</description>
     <version>1.0</version>
     <vendor>Ankur Gandhe</vendor>

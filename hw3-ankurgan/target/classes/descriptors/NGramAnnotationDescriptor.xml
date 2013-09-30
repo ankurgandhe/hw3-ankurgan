@@ -3,7 +3,7 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.deiis.annotator.NGramAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>TokenAnnotationDescriptor</name>
+    <name>NGramAnnotationDescriptor</name>
     <description>This annotator takes a text and marks the ngrams present in the text, using the token annotations</description>
     <version>1.0</version>
     <vendor>Ankur Gandhe</vendor>

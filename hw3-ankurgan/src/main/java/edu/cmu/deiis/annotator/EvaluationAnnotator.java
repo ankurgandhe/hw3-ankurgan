@@ -99,7 +99,7 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
  */
 class ScoreComparator implements Comparator<AnswerScore> {
 	public int compare(AnswerScore o1, AnswerScore o2) {
-		if (o1.getScore() < o2.getScore())
+		if (o1.getScore() <= o2.getScore())
 			return 1;
 		else
 			return -1;
