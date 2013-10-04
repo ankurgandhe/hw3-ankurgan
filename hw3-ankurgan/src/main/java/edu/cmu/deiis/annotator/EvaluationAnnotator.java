@@ -35,19 +35,18 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 	}
 
 	public void destroy() {
-		System.out.println("Average Precision:" + totalPrecision / numberOfDoc);
+		//System.out.println("Average Precision:" + totalPrecision / numberOfDoc);
 	}
 
 	public void process(JCas aJCas) {
-		// get document text
 
 		// search for question
 		FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
 		Iterator questionIter = questionIndex.iterator();
 		Question question = (Question) questionIter.next();
-		System.out.println(question.getCoveredText().trim());
+		//System.out.println(question.getCoveredText().trim());
 
-		// Iterate over all asnwers
+		// Iterate over all answers
 		FSIndex answerScoreIndex = aJCas.getAnnotationIndex(AnswerScore.type);
 		Iterator answerScoreIter = answerScoreIndex.iterator();
 		AnswerScore answerScore = null;
@@ -69,18 +68,19 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 		int i = 0;
 		float nCorrect = 0;
 		for (AnswerScore a : AnswerList) {
-			if (a.getAnswer().getIsCorrect())
+			/*if (a.getAnswer().getIsCorrect())
 				System.out.println("+ " + a.getScore() + " "
 						+ a.getAnswer().getCoveredText().trim());
 			else
 				System.out.println("- " + a.getScore() + " "
 						+ a.getAnswer().getCoveredText().trim());
+			*/
 			if (i++ < N && a.getAnswer().getIsCorrect())
 				nCorrect += 1;
 
 		}
 		float precision = nCorrect / N;
-		System.out.println("Precision at " + N + ":" + precision + "\n");
+		//System.out.println("Precision at " + N + ":" + precision + "\n");
 		
 		totalPrecision += precision;
 		numberOfDoc++;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>edu.cmu.deiis.annotator.EvaluationAnnotator</implementationName>
+  <implementationName>edu.cmu.deiis.cpe.CasConsumer</implementationName>
   <processingResourceMetaData>
     <name>casConsumerDescriptor</name>
     <description>This cas comsumer takes the Envaluation output of the CAS and prints the precision on stdout.</description>
@@ -20,6 +20,8 @@
       <capability>
         <inputs>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Evaluation</type>
+        <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Question</type>
+          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.AnswerScore</type>
         </inputs>
         <outputs/>
         <languagesSupported/>
