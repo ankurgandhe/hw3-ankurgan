@@ -1,13 +1,13 @@
 <!--
-Descriptor file for client access to remote Stanford NLP
+Descriptor file for client access to remote Stanford NLP from clearTK
  -->
 <customResourceSpecifier xmlns="http://uima.apache.org/resourceSpecifier">
    <resourceClassName>org.apache.uima.aae.jms_adapter.JmsAnalysisEngineServiceAdapter</resourceClassName>
    <parameters>
      <parameter name="brokerURL" value="tcp://mu.lti.cs.cmu.edu:61616"/>
      <parameter name="endpoint" value="ScnlpQueue"/>
-     <parameter name="timeout" value="5000"/>
-     <parameter name="getmetatimeout" value="5000"/>
-     <parameter name="cpctimeout" value="5000"/>
+     <parameter name="timeout" value="5000000"/>
+     <parameter name="getmetatimeout" value="5000000"/>
+     <parameter name="cpctimeout" value="5000000"/>
    </parameters>
 </customResourceSpecifier>
