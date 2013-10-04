@@ -46,6 +46,7 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 			answer = (Answer) answerIter.next();
 			nG1 = GetNGrams(aNGrams, nG1, answer.getEnd(), ngramIter);
 			score = ScoreAnswer(qNGrams, aNGrams);
+			// Add to asnwerscore annotations
 			AnswerScore annotation = new AnswerScore(aJCas);
 			annotation.setBegin(answer.getBegin());
 			annotation.setEnd(answer.getEnd());
@@ -63,6 +64,7 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 	 * Function to return the string list of ngrams present in the iterator
 	 * untill end pointer is reached
 	 */
+	
 	private NGram GetNGrams(ArrayList<String> nGrams, NGram nG1, int end,
 			Iterator nGramIter) {
 		if (nG1 != null)
@@ -92,7 +94,7 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 			}
 
 		}
-		score = number_of_matches / qNGrams.size(); // number_of_matches/
+		score = number_of_matches / qNGrams.size(); // number_of_matches
 		if (score > 1)
 			score = 1;
 		score = Math.round(score * 100) / 100.0d;

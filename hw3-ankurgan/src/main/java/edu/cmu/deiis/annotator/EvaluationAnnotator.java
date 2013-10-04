@@ -80,7 +80,8 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 
 		}
 		float precision = nCorrect / N;
-		//System.out.println("Precision at " + N + ":" + precision + "\n");
+		System.out.println("Precision at " + N + ":" + precision + "\n");
+		
 		totalPrecision += precision;
 		numberOfDoc++;
 		// Store result in Evaluation annotation

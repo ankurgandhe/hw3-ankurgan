@@ -18,9 +18,6 @@
     <delegateAnalysisEngine key="AnswerScoreDescriptor">
       <import name="descriptors.AnswerScoreDescriptor"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="EvaluationDescriptor">
-      <import name="descriptors.EvaluationDescriptor"/>
-    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>hw2-ankurgan-aae</name>
@@ -36,7 +33,6 @@
         <node>AnswerAnnotationDescriptor</node>
         <node>QuestionAnnotationDescriptor</node>
         <node>AnswerScoreDescriptor</node>
-      <node>EvaluationDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>
