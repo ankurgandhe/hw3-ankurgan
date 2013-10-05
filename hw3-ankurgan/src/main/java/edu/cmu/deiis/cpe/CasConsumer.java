@@ -32,7 +32,9 @@ public class CasConsumer extends CasConsumer_ImplBase {
 	}
 
 	public void destroy() {
-		System.out.println("Average Precision:" + totalPrecision / numberOfDoc);
+		double avgP = totalPrecision / numberOfDoc ;
+		avgP = Math.round(avgP * 100) / 100.0d;
+		System.out.println("Average Precision:" + avgP);
 	}
 
 	@Override
@@ -76,24 +78,7 @@ public class CasConsumer extends CasConsumer_ImplBase {
 		} else
 			System.out.println("No Evaluation present");
 
-		// Print all Answers
-		/*
-		FSIndex answerScoreIndex = aJCas.getAnnotationIndex(AnswerScore.type);
-		Iterator answerScoreIter = answerScoreIndex.iterator();
-		AnswerScore answerScore = null;
-		List<AnswerScore> AnswerList = new ArrayList<AnswerScore>();
 		
-		while (answerScoreIter.hasNext()) {
-			answerScore = (AnswerScore) answerScoreIter.next(); 
-			if (answerScore.getAnswer().getIsCorrect())
-				System.out.println("+ " + answerScore.getScore() + " "
-						+ answerScore.getAnswer().getCoveredText().trim());
-			else
-				System.out.println("- " + answerScore.getScore() + " "
-						+ answerScore.getAnswer().getCoveredText().trim());
-			
-		}*/
-
 	}
 
 }

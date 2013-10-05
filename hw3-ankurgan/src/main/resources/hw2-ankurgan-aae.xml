@@ -39,10 +39,14 @@
       <node>EvaluationDescriptor</node>
       </fixedFlow>
     </flowConstraints>
+    <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
       <capability>
-        <inputs/>
+        <inputs>
+          <type allAnnotatorFeatures="true">org.cleartk.token.type.Token</type>
+          <type allAnnotatorFeatures="true">org.cleartk.ne.type.NamedEntityMention</type>
+        </inputs>
         <outputs>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Answer</type>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Question</type>

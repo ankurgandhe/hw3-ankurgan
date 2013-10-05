@@ -13,6 +13,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSArray;
 import org.apache.uima.resource.ResourceInitializationException;
 
+
 import edu.cmu.deiis.types.AnswerScore;
 import edu.cmu.deiis.types.Question;
 import edu.cmu.deiis.types.Evaluation;

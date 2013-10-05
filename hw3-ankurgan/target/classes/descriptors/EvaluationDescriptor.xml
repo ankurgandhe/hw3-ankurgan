@@ -12,6 +12,7 @@
     <typeSystemDescription>
       <imports>
         <import location="deiis_types.xml"/>
+      <import name="org.cleartk.TypeSystem"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>
