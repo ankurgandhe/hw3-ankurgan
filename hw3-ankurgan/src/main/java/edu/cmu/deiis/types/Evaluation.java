@@ -7,11 +7,15 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
+import org.apache.uima.jcas.cas.FSArray;
 import org.apache.uima.jcas.tcas.Annotation;
 
 
+import org.apache.uima.jcas.cas.TOP;
+
+
 /** Stores the result of metric of evaluation for each document
- * Updated by JCasGen Mon Sep 30 15:25:36 EDT 2013
+ * Updated by JCasGen Fri Oct 04 23:06:19 EDT 2013
  * XML source: C:/Users/gandhe/git/hw3-ankurgan/hw3-ankurgan/src/main/resources/descriptors/deiis_types.xml
  * @generated */
 public class Evaluation extends Annotation {
@@ -96,6 +100,40 @@ public class Evaluation extends Annotation {
     if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_n == null)
       jcasType.jcas.throwFeatMissing("n", "edu.cmu.deiis.types.Evaluation");
     jcasType.ll_cas.ll_setIntValue(addr, ((Evaluation_Type)jcasType).casFeatCode_n, v);}    
+   
+    
+  //*--------------*
+  //* Feature: answerList
+
+  /** getter for answerList - gets Array Containing the list of answers ordered by their score
+   * @generated */
+  public FSArray getAnswerList() {
+    if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_answerList == null)
+      jcasType.jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    return (FSArray)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Evaluation_Type)jcasType).casFeatCode_answerList)));}
+    
+  /** setter for answerList - sets Array Containing the list of answers ordered by their score 
+   * @generated */
+  public void setAnswerList(FSArray v) {
+    if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_answerList == null)
+      jcasType.jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Evaluation_Type)jcasType).casFeatCode_answerList, jcasType.ll_cas.ll_getFSRef(v));}    
+    
+  /** indexed getter for answerList - gets an indexed value - Array Containing the list of answers ordered by their score
+   * @generated */
+  public TOP getAnswerList(int i) {
+    if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_answerList == null)
+      jcasType.jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    jcasType.jcas.checkArrayBounds(jcasType.ll_cas.ll_getRefValue(addr, ((Evaluation_Type)jcasType).casFeatCode_answerList), i);
+    return (TOP)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefArrayValue(jcasType.ll_cas.ll_getRefValue(addr, ((Evaluation_Type)jcasType).casFeatCode_answerList), i)));}
+
+  /** indexed setter for answerList - sets an indexed value - Array Containing the list of answers ordered by their score
+   * @generated */
+  public void setAnswerList(int i, TOP v) { 
+    if (Evaluation_Type.featOkTst && ((Evaluation_Type)jcasType).casFeat_answerList == null)
+      jcasType.jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    jcasType.jcas.checkArrayBounds(jcasType.ll_cas.ll_getRefValue(addr, ((Evaluation_Type)jcasType).casFeatCode_answerList), i);
+    jcasType.ll_cas.ll_setRefArrayValue(jcasType.ll_cas.ll_getRefValue(addr, ((Evaluation_Type)jcasType).casFeatCode_answerList), i, jcasType.ll_cas.ll_getFSRef(v));}
   }
 
     

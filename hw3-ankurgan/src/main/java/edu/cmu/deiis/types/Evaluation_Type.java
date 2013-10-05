@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** Stores the result of metric of evaluation for each document
- * Updated by JCasGen Mon Sep 30 15:25:36 EDT 2013
+ * Updated by JCasGen Fri Oct 04 23:06:19 EDT 2013
  * @generated */
 public class Evaluation_Type extends Annotation_Type {
   /** @generated */
@@ -79,6 +79,43 @@ public class Evaluation_Type extends Annotation_Type {
     ll_cas.ll_setIntValue(addr, casFeatCode_n, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_answerList;
+  /** @generated */
+  final int     casFeatCode_answerList;
+  /** @generated */ 
+  public int getAnswerList(int addr) {
+        if (featOkTst && casFeat_answerList == null)
+      jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_answerList);
+  }
+  /** @generated */    
+  public void setAnswerList(int addr, int v) {
+        if (featOkTst && casFeat_answerList == null)
+      jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    ll_cas.ll_setRefValue(addr, casFeatCode_answerList, v);}
+    
+   /** @generated */
+  public int getAnswerList(int addr, int i) {
+        if (featOkTst && casFeat_answerList == null)
+      jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    if (lowLevelTypeChecks)
+      return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_answerList), i, true);
+    jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_answerList), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_answerList), i);
+  }
+   
+  /** @generated */ 
+  public void setAnswerList(int addr, int i, int v) {
+        if (featOkTst && casFeat_answerList == null)
+      jcas.throwFeatMissing("answerList", "edu.cmu.deiis.types.Evaluation");
+    if (lowLevelTypeChecks)
+      ll_cas.ll_setRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_answerList), i, v, true);
+    jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_answerList), i);
+    ll_cas.ll_setRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_answerList), i, v);
+  }
+ 
 
 
 
@@ -95,6 +132,10 @@ public class Evaluation_Type extends Annotation_Type {
  
     casFeat_n = jcas.getRequiredFeatureDE(casType, "n", "uima.cas.Integer", featOkTst);
     casFeatCode_n  = (null == casFeat_n) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_n).getCode();
+
+ 
+    casFeat_answerList = jcas.getRequiredFeatureDE(casType, "answerList", "uima.cas.FSArray", featOkTst);
+    casFeatCode_answerList  = (null == casFeat_answerList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_answerList).getCode();
 
   }
 }

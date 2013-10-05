@@ -10,6 +10,7 @@ import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.cas.FSIndex;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.cas.FSArray;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import edu.cmu.deiis.types.AnswerScore;
@@ -35,7 +36,8 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 	}
 
 	public void destroy() {
-		//System.out.println("Average Precision:" + totalPrecision / numberOfDoc);
+		// System.out.println("Average Precision:" + totalPrecision /
+		// numberOfDoc);
 	}
 
 	public void process(JCas aJCas) {
@@ -44,44 +46,45 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 		FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
 		Iterator questionIter = questionIndex.iterator();
 		Question question = (Question) questionIter.next();
-		//System.out.println(question.getCoveredText().trim());
+		// System.out.println(question.getCoveredText().trim());
 
 		// Iterate over all answers
 		FSIndex answerScoreIndex = aJCas.getAnnotationIndex(AnswerScore.type);
 		Iterator answerScoreIter = answerScoreIndex.iterator();
 		AnswerScore answerScore = null;
-		List<AnswerScore> AnswerList = new ArrayList<AnswerScore>();
+		List<AnswerScore> answerList = new ArrayList<AnswerScore>();
 
 		// Store number of correct answers
 		int N = 0;
 		// Get all answers in a list
 		while (answerScoreIter.hasNext()) {
 			answerScore = (AnswerScore) answerScoreIter.next();
-			AnswerList.add(answerScore);
+			answerList.add(answerScore);
 			if (answerScore.getAnswer().getIsCorrect())
 				N = N + 1;
 		}
 		// Sort AnswerList in reverse order
-		Collections.sort(AnswerList, new ScoreComparator());
+		Collections.sort(answerList, new ScoreComparator());
 
 		// store number of correct answers in topN
 		int i = 0;
 		float nCorrect = 0;
-		for (AnswerScore a : AnswerList) {
-			if (a.getAnswer().getIsCorrect())
-				System.out.println("+ " + a.getScore() + " "
-						+ a.getAnswer().getCoveredText().trim());
+		FSArray answerScoreArray = new FSArray(aJCas, answerList.size());
+		for (AnswerScore ansScore : answerList) {
+			if (ansScore.getAnswer().getIsCorrect())
+				System.out.println("+ " + ansScore.getScore() + " "
+						+ ansScore.getAnswer().getCoveredText().trim());
 			else
-				System.out.println("- " + a.getScore() + " "
-						+ a.getAnswer().getCoveredText().trim());
-			
-			if (i++ < N && a.getAnswer().getIsCorrect())
+				System.out.println("- " + ansScore.getScore() + " "
+						+ ansScore.getAnswer().getCoveredText().trim());
+			answerScoreArray.set(i, ansScore);
+			if (i++ < N && ansScore.getAnswer().getIsCorrect())
 				nCorrect += 1;
 
 		}
 		float precision = nCorrect / N;
-		//System.out.println("Precision at " + N + ":" + precision + "\n");
-		
+		// System.out.println("Precision at " + N + ":" + precision + "\n");
+
 		totalPrecision += precision;
 		numberOfDoc++;
 		// Store result in Evaluation annotation
@@ -90,8 +93,9 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 		evaluate.setN(N);
 		evaluate.setBegin(question.getBegin());
 		evaluate.setEnd(answerScore.getEnd());
+		evaluate.setAnswerList(answerScoreArray);
 		evaluate.addToIndexes();
-		
+
 	}
 }
 

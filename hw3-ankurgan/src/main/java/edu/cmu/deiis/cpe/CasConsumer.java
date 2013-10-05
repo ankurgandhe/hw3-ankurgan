@@ -11,6 +11,7 @@ import org.apache.uima.cas.CASException;
 import org.apache.uima.cas.FSIndex;
 import org.apache.uima.collection.CasConsumer_ImplBase;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.cas.FSArray;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 
@@ -49,8 +50,24 @@ public class CasConsumer extends CasConsumer_ImplBase {
 		// Print question
 		Question question = (Question) questionIter.next();
 		System.out.println(question.getCoveredText().trim());
+		// Print Final Evaluation
+		FSIndex evaluationIndex = aJCas.getAnnotationIndex(Evaluation.type);
+		Iterator evaluationIter = evaluationIndex.iterator();
+		FSArray answerScoreArray = null;  
+		//Evaluation evl  = null;
+		if (evaluationIter.hasNext()) {
+			Evaluation evl = (Evaluation) evaluationIter.next();
+			//answerScoreArray = ev1.getAnswerList();
+			
+			System.out.println("Precision at " + evl.getN() + ":"
+					+ evl.getPrecision() + "\n" );
+			totalPrecision += evl.getPrecision();
+			numberOfDoc++;
+		} else
+			System.out.println("No Evaluation present");
 
 		// Print all Answers
+		//answerScoreArray = qaSystemOutput.getAnswerScores()
 		FSIndex answerScoreIndex = aJCas.getAnnotationIndex(AnswerScore.type);
 		Iterator answerScoreIter = answerScoreIndex.iterator();
 		AnswerScore answerScore = null;
@@ -66,17 +83,6 @@ public class CasConsumer extends CasConsumer_ImplBase {
 						+ answerScore.getAnswer().getCoveredText().trim());
 			
 		}
-		// Print Final Evaluation
-		FSIndex evaluationIndex = aJCas.getAnnotationIndex(Evaluation.type);
-		Iterator evaluationIter = evaluationIndex.iterator();
-		if (evaluationIter.hasNext()) {
-			Evaluation evl = (Evaluation) evaluationIter.next();
-			System.out.println("Precision at " + evl.getN() + ":"
-					+ evl.getPrecision() + "\n");
-			totalPrecision += evl.getPrecision();
-			numberOfDoc++;
-		} else
-			System.out.println("No Evaluation present");
 
 	}
 

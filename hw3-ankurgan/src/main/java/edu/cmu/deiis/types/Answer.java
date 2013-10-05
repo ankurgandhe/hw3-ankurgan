@@ -13,7 +13,7 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** 
- * Updated by JCasGen Mon Sep 30 15:25:36 EDT 2013
+ * Updated by JCasGen Fri Oct 04 23:06:19 EDT 2013
  * XML source: C:/Users/gandhe/git/hw3-ankurgan/hw3-ankurgan/src/main/resources/descriptors/deiis_types.xml
  * @generated */
 public class Answer extends Annotation {

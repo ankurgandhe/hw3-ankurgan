@@ -94,6 +94,11 @@
           <description>Stores the number of correct answers in the system</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
         </featureDescription>
+      <featureDescription>
+          <name>answerList</name>
+          <description>Array Containing the list of answers ordered by their score</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
   </types>
