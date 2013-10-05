@@ -53,12 +53,22 @@ public class CasConsumer extends CasConsumer_ImplBase {
 		// Print Final Evaluation
 		FSIndex evaluationIndex = aJCas.getAnnotationIndex(Evaluation.type);
 		Iterator evaluationIter = evaluationIndex.iterator();
-		FSArray answerScoreArray = null;  
-		//Evaluation evl  = null;
+		FSArray answerScoreArray = null;
+		AnswerScore answerScore=null;
+		Evaluation evl  = null;
 		if (evaluationIter.hasNext()) {
-			Evaluation evl = (Evaluation) evaluationIter.next();
-			//answerScoreArray = ev1.getAnswerList();
-			
+			evl = (Evaluation) evaluationIter.next();
+			answerScoreArray = evl.getAnswerList();
+			for (int idx=0; idx < answerScoreArray.size(); idx ++ ) {
+				answerScore = (AnswerScore) answerScoreArray.get(idx);
+				if (answerScore.getAnswer().getIsCorrect())
+					System.out.println("+ " + answerScore.getScore() + " "
+							+ answerScore.getAnswer().getCoveredText().trim());
+				else
+					System.out.println("- " + answerScore.getScore() + " "
+							+ answerScore.getAnswer().getCoveredText().trim());
+				
+			}
 			System.out.println("Precision at " + evl.getN() + ":"
 					+ evl.getPrecision() + "\n" );
 			totalPrecision += evl.getPrecision();
@@ -67,7 +77,7 @@ public class CasConsumer extends CasConsumer_ImplBase {
 			System.out.println("No Evaluation present");
 
 		// Print all Answers
-		//answerScoreArray = qaSystemOutput.getAnswerScores()
+		/*
 		FSIndex answerScoreIndex = aJCas.getAnnotationIndex(AnswerScore.type);
 		Iterator answerScoreIter = answerScoreIndex.iterator();
 		AnswerScore answerScore = null;
@@ -82,7 +92,7 @@ public class CasConsumer extends CasConsumer_ImplBase {
 				System.out.println("- " + answerScore.getScore() + " "
 						+ answerScore.getAnswer().getCoveredText().trim());
 			
-		}
+		}*/
 
 	}
 

@@ -71,12 +71,7 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 		float nCorrect = 0;
 		FSArray answerScoreArray = new FSArray(aJCas, answerList.size());
 		for (AnswerScore ansScore : answerList) {
-			if (ansScore.getAnswer().getIsCorrect())
-				System.out.println("+ " + ansScore.getScore() + " "
-						+ ansScore.getAnswer().getCoveredText().trim());
-			else
-				System.out.println("- " + ansScore.getScore() + " "
-						+ ansScore.getAnswer().getCoveredText().trim());
+			
 			answerScoreArray.set(i, ansScore);
 			if (i++ < N && ansScore.getAnswer().getIsCorrect())
 				nCorrect += 1;
