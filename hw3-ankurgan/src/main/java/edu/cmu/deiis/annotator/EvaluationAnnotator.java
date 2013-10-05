@@ -68,13 +68,13 @@ public class EvaluationAnnotator extends JCasAnnotator_ImplBase {
 		int i = 0;
 		float nCorrect = 0;
 		for (AnswerScore a : AnswerList) {
-			/*if (a.getAnswer().getIsCorrect())
+			if (a.getAnswer().getIsCorrect())
 				System.out.println("+ " + a.getScore() + " "
 						+ a.getAnswer().getCoveredText().trim());
 			else
 				System.out.println("- " + a.getScore() + " "
 						+ a.getAnswer().getCoveredText().trim());
-			*/
+			
 			if (i++ < N && a.getAnswer().getIsCorrect())
 				nCorrect += 1;
 

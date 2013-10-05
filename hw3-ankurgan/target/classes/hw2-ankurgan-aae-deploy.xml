@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This descriptor deploys hw2-ankurgan-aae.xml as a service to defaultBrokerURL -->
+
+<analysisEngineDeploymentDescription
+	xmlns="http://uima.apache.org/resourceSpecifier">
+
+	<name>QA System Evaluation</name>
+	<description>Deploys the question answer evaluation Aggregate AE with
+		all its delegates in the same JVM.</description>
+
+	<deployment protocol="jms" provider="activemq">
+		<service>
+			<inputQueue endpoint="QASystem" brokerURL="${defaultBrokerURL}" />
+			<topDescriptor>
+				<import location="hw2-ankurgan-aae.xml" />
+			</topDescriptor>
+		</service>
+	</deployment>
+
+</analysisEngineDeploymentDescription>
