@@ -11,6 +11,7 @@ import org.apache.uima.fit.util.JCasUtil;
 
 import org.cleartk.ne.type.NamedEntityMention;
 import org.cleartk.token.type.Token;
+import org.cleartk.syntax.dependency.type.DependencyNode;
 import edu.cmu.deiis.types.Answer;
 import edu.cmu.deiis.types.AnswerScore;
 import edu.cmu.deiis.types.NGram;
@@ -46,6 +47,7 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 		ArrayList<String> qNETextList = new ArrayList<String>();
 		List<Token> qTokenList = new ArrayList<Token>();
 		ArrayList<String> qLemmaTextList = new ArrayList<String>();
+		
 		Question ques;
 		// Scoring
 		double score = 0;
@@ -78,6 +80,8 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 			qTokenList = JCasUtil.selectCovered(Token.class, ques);
 			for (Token qToken : qTokenList) {
 				qLemmaTextList.add(qToken.getLemma());
+			
+					
 			}
 		}
 
@@ -103,6 +107,7 @@ public class AnswerScoreAnnotator extends JCasAnnotator_ImplBase {
 				aTokenList = JCasUtil.selectCovered(Token.class, answer);
 				for (Token aToken : aTokenList) {
 					aLemmaTextList.add(aToken.getLemma());
+					
 				}
 				lemmaScore = ScoreText(qLemmaTextList, aLemmaTextList);
 				// Negation penalty

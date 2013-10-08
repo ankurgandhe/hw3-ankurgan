@@ -25,6 +25,7 @@
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Answer</type>
         <type allAnnotatorFeatures="true">org.cleartk.token.type.Token</type>
           <type allAnnotatorFeatures="true">org.cleartk.ne.type.NamedEntityMention</type>
+        <type allAnnotatorFeatures="true">org.cleartk.srl.type.Argument</type>
         </inputs>
         <outputs>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.AnswerScore</type>
